@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absen Kawaii 🐼 - Sultan Absen & Dashboard WIB</title>
+    
+    <!-- Google Fonts: Fredoka & Gaegu -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Gaegu:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastelCream: '#FFFDF9',
+                        pastelPink: '#FFD6E0',
+                        pastelPinkDark: '#FF85A2',
+                        pastelMint: '#C8F2E0',
+                        pastelMintDark: '#38A3A5',
+                        pastelBlue: '#D8F3DC',
+                        pastelYellow: '#FFF1C5',
+                        pastelPurple: '#E2D4F9',
+                        pandaDark: '#2B2D42',
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        gaegu: ['Gaegu', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #FFF5F8 0%, #EBFDF5 50%, #E8F0FE 100%);
+            min-height: 100vh;
+            color: #2B2D42;
+            overflow-x: hidden;
+        }
+
+        /* Floating Background Particles */
+        .particle-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: floatParticle 12s infinite linear;
+            opacity: 0.6;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(105vh) scale(0.8) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.7; }
+            80% { opacity: 0.7; }
+            100% { transform: translateY(-10vh) scale(1.1) rotate(360deg); opacity: 0; }
+        }
+
+        /* Kawaii Cards Styling */
+        .kawaii-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 3.5px solid #FFE4EC;
+            box-shadow: 0 15px 35px rgba(255, 133, 162, 0.12), 0 5px 15px rgba(112, 214, 255, 0.08);
+        }
+
+        /* Glow animation for SULTAN ABSEN */
+        .sultan-glow {
+            animation: sultanPulse 2s infinite alternate;
+            background: linear-gradient(135deg, #FFF1C5 0%, #FFD166 100%);
+            border: 3.5px solid #FFB703;
+        }
+
+        @keyframes sultanPulse {
+            0% { box-shadow: 0 0 10px rgba(255, 183, 3, 0.4); transform: scale(1); }
+            100% { box-shadow: 0 0 22px rgba(255, 183, 3, 0.85); transform: scale(1.015); }
+        }
+
+        /* PANDA MINI CORNER PEEK ANIMATIONS */
+        .panda-corner {
+            position: fixed;
+            bottom: 0;
+            z-index: 45;
+            pointer-events: none;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .panda-left { left: 15px; }
+        .panda-right { right: 15px; }
+
+        .panda-corner.peeking-left {
+            transform: translateY(14px);
+            animation: idlePeekLeft 3.6s ease-in-out infinite alternate;
+        }
+        .panda-corner.peeking-right {
+            transform: translateY(14px);
+            animation: idlePeekRight 3.6s ease-in-out infinite alternate 0.5s;
+        }
+
+        .panda-corner.hiding {
+            transform: translateY(98px) !important;
+        }
+
+        @keyframes idlePeekLeft {
+            0% { transform: translateY(14px) rotate(0deg); }
+            50% { transform: translateY(8px) rotate(-3deg); }
+            100% { transform: translateY(16px) rotate(2deg); }
+        }
+
+        @keyframes idlePeekRight {
+            0% { transform: translateY(14px) rotate(0deg); }
+            50% { transform: translateY(8px) rotate(3deg); }
+            100% { transform: translateY(16px) rotate(-2deg); }
+        }
+
+        .mini-panda-wrapper {
+            position: relative;
+            width: 95px;
+            height: 90px;
+            pointer-events: auto;
+        }
+
+        .panda-paws {
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 8px;
+            z-index: 25;
+        }
+
+        .paw {
+            width: 20px;
+            height: 15px;
+            background: #2B2D42;
+            border-radius: 10px 10px 4px 4px;
+            border: 2px solid #FFFFFF;
+        }
+
+        .mini-panda-head {
+            position: absolute;
+            bottom: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 86px;
+            height: 70px;
+            background: #FFFFFF;
+            border: 3px solid #2B2D42;
+            border-radius: 50% 50% 45% 45%;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            z-index: 20;
+        }
+
+        .mini-ear {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: #2B2D42;
+            border-radius: 50%;
+            top: -7px;
+            z-index: 15;
+            transition: transform 0.3s ease;
+        }
+        .mini-ear.left { left: 2px; }
+        .mini-ear.right { right: 2px; }
+
+        .mini-eye-patch {
+            position: absolute;
+            width: 20px;
+            height: 24px;
+            background: #2B2D42;
+            border-radius: 50%;
+            top: 16px;
+        }
+        .mini-eye-patch.left { left: 13px; transform: rotate(15deg); }
+        .mini-eye-patch.right { right: 13px; transform: rotate(-15deg); }
+
+        .mini-pupil {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #FFFFFF;
+            border-radius: 50%;
+            top: 7px;
+            left: 6px;
+            transition: transform 0.08s ease-out;
+        }
+        .mini-pupil::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #2B2D42;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+        }
+
+        .mini-blush {
+            position: absolute;
+            width: 11px;
+            height: 6px;
+            background: #FF85A2;
+            border-radius: 50%;
+            top: 40px;
+            opacity: 0.85;
+        }
+        .mini-blush.left { left: 9px; }
+        .mini-blush.right { right: 9px; }
+
+        .mini-nose {
+            position: absolute;
+            width: 9px;
+            height: 6px;
+            background: #2B2D42;
+            border-radius: 5px 5px 8px 8px;
+            top: 39px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .mini-mouth {
+            position: absolute;
+            width: 11px;
+            height: 6px;
+            border-bottom: 2px solid #2B2D42;
+            border-radius: 0 0 6px 6px;
+            top: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .mini-speech-bubble {
+            position: absolute;
+            top: -26px;
+            background: #FFFFFF;
+            border: 2px solid #2B2D42;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            color: #2B2D42;
+            white-space: nowrap;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            opacity: 0;
+            transform: translateY(6px) scale(0.85);
+            transition: all 0.25s ease;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        .panda-left .mini-speech-bubble { left: 0px; }
+        .panda-right .mini-speech-bubble { right: 0px; }
+
+        .mini-panda-wrapper:hover .mini-speech-bubble {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Bouncy Buttons */
+        .btn-kawaii {
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-kawaii:hover {
+            transform: translateY(-2.5px);
+            box-shadow: 0 8px 20px rgba(255, 133, 162, 0.3);
+        }
+        .btn-kawaii:active {
+            transform: translateY(1px);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #FFF5F8; }
+        ::-webkit-scrollbar-thumb { background: #FFB6C1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF85A2; }
+    </style>
+</head>
+<body class="min-h-screen relative flex flex-col justify-between">
+
+    <!-- Floating Background Particles -->
+    <div class="particle-container" id="particleContainer"></div>
+
+    <!-- NAVBAR HEADER -->
+    <header class="w-full bg-white/80 backdrop-blur-md border-b-2 border-pink-100 sticky top-0 z-30 px-4 py-3">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-10 h-10 bg-pink-100 rounded-2xl flex items-center justify-center text-pink-500 font-bold text-xl border-2 border-pink-200 shadow-sm">
+                    🐼
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-gray-800 tracking-tight font-gaegu leading-none">ABSENSI KAWAII</h1>
+                    <p class="text-[10px] text-pink-400 font-semibold tracking-wider uppercase">Real-Time WIB (Asia/Jakarta)</p>
+                </div>
+            </div>
+
+            <!-- Real-time Clock WIB -->
+            <div class="flex items-center gap-3">
+                <div class="flex flex-col items-end text-right">
+                    <span id="navClock" class="text-xs font-black text-pink-600 bg-pink-50 px-3 py-1 rounded-xl border border-pink-200 shadow-sm">--:--:-- WIB</span>
+                    <span id="navDate" class="text-[10px] text-gray-500 font-medium mt-0.5">Memuat tanggal...</span>
+                </div>
+                <div id="navUserBadge" class="hidden">
+                    <button onclick="logout()" class="px-3 py-1.5 bg-rose-100 hover:bg-rose-200 text-rose-600 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="hidden md:inline">Keluar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-5xl w-full mx-auto p-4 md:p-6 flex-grow z-20">
+
+        <!-- ================= PAGE LOGIN ================= -->
+        <div id="loginView" class="flex items-center justify-center py-8 my-auto">
+            <div class="w-full max-w-sm kawaii-card rounded-3xl p-7 relative">
+                
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center justify-center w-14 h-14 bg-pink-100 border-2 border-pink-200 rounded-2xl mb-2 text-pink-500 text-2xl shadow-inner">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                    </div>
+                    <h2 class="text-2xl font-extrabold text-gray-800 font-gaegu">Masuk Presensi 🐾</h2>
+                    <p class="text-xs text-gray-500 mt-0.5">Isi nama kamu untuk mulai melakukan absen</p>
+                </div>
+
+                <form onsubmit="handleLogin(event)" class="space-y-4">
+                    <!-- Nama Lengkap -->
+                    <div>
+                        <label class="block text-[11px] font-bold text-gray-600 uppercase tracking-wider mb-1">Nama Lengkap / Username</label>
+                        <div class="relative flex items-center">
+                            <i class="fa-solid fa-user absolute left-3.5 text-pink-400 text-xs"></i>
+                            <input 
+                                type="text" 
+                                id="loginName" 
+                                required
+                                placeholder="Tulis namamu disini..." 
+                                class="w-full pl-9 pr-4 py-2.5 bg-pink-50/50 border-2 border-pink-100 rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-pink-300 focus:bg-white transition-all"
+                                onfocus="updatePandasSpeech('Siapa namamu? 🌸', 'Selamat datang! ✨')"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <label class="block text-[11px] font-bold text-gray-600 uppercase tracking-wider mb-1">Password</label>
+                        <div class="relative flex items-center">
+                            <i class="fa-solid fa-lock absolute left-3.5 text-pink-400 text-xs"></i>
+                            <input 
+                                type="password" 
+                                id="loginPassword" 
+                                required
+                                placeholder="••••••••" 
+                                class="w-full pl-9 pr-10 py-2.5 bg-pink-50/50 border-2 border-pink-100 rounded-2xl text-xs text-gray-700 focus:outline-none focus:border-pink-300 focus:bg-white transition-all"
+                                onfocus="pandasHide()"
+                                onblur="pandasShow()"
+                            >
+                            <button 
+                                type="button" 
+                                onclick="togglePassword()" 
+                                class="absolute right-3 text-gray-400 hover:text-pink-400 focus:outline-none"
+                            >
+                                <i id="eyeIcon" class="fa-solid fa-eye text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        class="btn-kawaii w-full py-3 bg-gradient-to-r from-pink-400 to-pastelPinkDark text-white font-extrabold rounded-2xl shadow-md text-xs tracking-wider mt-2"
+                    >
+                        MASUK SEKARANG <i class="fa-solid fa-arrow-right-long ml-1"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- ================= DASHBOARD ABSENSI ================= -->
+        <div id="dashboardView" class="hidden space-y-6">
+            
+            <!-- User Banner -->
+            <div class="kawaii-card rounded-3xl p-5 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-14 h-14 bg-gradient-to-tr from-pink-300 to-purple-300 rounded-2xl flex items-center justify-center text-white text-2xl shadow-md border-2 border-white">
+                        🐼
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-xl font-bold text-gray-800">Halo, <span id="userDisplayName" class="text-pink-500">Siswa</span>!</h2>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-0.5">Pilih status absensimu untuk hari ini di bawah ini.</p>
+                    </div>
+                </div>
+
+                <!-- Live WIB Info Box -->
+                <div class="bg-gradient-to-r from-pink-50 to-emerald-50 border-2 border-pink-200 rounded-2xl p-3.5 w-full md:w-auto flex items-center justify-between md:justify-end gap-4 shadow-sm">
+                    <div class="text-left">
+                        <div class="flex items-center gap-1.5 text-pink-600 font-bold text-xs">
+                            <span class="w-2 h-2 rounded-full bg-pink-500 animate-ping"></span>
+                            WIB (Waktu Indonesia Barat)
+                        </div>
+                        <div id="dashClock" class="text-lg font-black text-gray-800 tracking-wider">--:--:-- WIB</div>
+                        <div id="dashDate" class="text-[10px] text-gray-500 font-medium">Memuat tanggal...</div>
+                    </div>
+                    <div class="text-right border-l-2 border-pink-200 pl-3">
+                        <span class="text-[9px] font-bold text-pink-500 uppercase tracking-wide block">Reset Absen</span>
+                        <span class="text-[11px] font-extrabold text-gray-700">Setiap 00:00 WIB</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- "OH INI SULTAN ABSEN" HIGHLIGHT BOARD -->
+            <div id="sultanContainer" class="sultan-glow rounded-3xl p-5 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-12 h-12 bg-amber-400 rounded-2xl flex items-center justify-center text-2xl shadow-md text-white border-2 border-amber-200">
+                        👑
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-black uppercase tracking-wider text-amber-900 bg-amber-200/90 px-2.5 py-0.5 rounded-lg border border-amber-300">
+                                OH INI SULTAN ABSEN 👑✨
+                            </span>
+                        </div>
+                        <h3 id="sultanName" class="text-lg font-extrabold text-amber-950 mt-1">Belum Ada Sultan Absen Hari Ini!</h3>
+                    </div>
+                </div>
+                <div id="sultanTimeBadge" class="text-xs font-bold text-amber-900 bg-white/90 px-4 py-2 rounded-xl border border-amber-200 shadow-sm text-center">
+                    Ayo jadi orang PERTAMA yang absen hari ini! 🚀
+                </div>
+            </div>
+
+            <!-- INPUT ABSEN SAYA -->
+            <div class="kawaii-card rounded-3xl p-5 border-2 border-pink-100">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-sm font-bold text-gray-700 flex items-center gap-2">
+                        <i class="fa-solid fa-pen-to-square text-pink-400"></i>
+                        Input Status Absen Kamu Hari Ini:
+                    </h3>
+                    <span id="myCurrentStatus" class="text-xs font-bold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-xl">Status: Belum Absen</span>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <button onclick="submitMyAttendance('Hadir')" class="btn-kawaii py-3 px-4 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 border-2 border-emerald-300 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-circle-check text-emerald-500"></i> HADIR
+                    </button>
+                    <button onclick="openNoteModal('Sakit')" class="btn-kawaii py-3 px-4 bg-amber-100 hover:bg-amber-200 text-amber-700 border-2 border-amber-300 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-notes-medical text-amber-500"></i> SAKIT
+                    </button>
+                    <button onclick="openNoteModal('Izin')" class="btn-kawaii py-3 px-4 bg-sky-100 hover:bg-sky-200 text-sky-700 border-2 border-sky-300 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-envelope-open-text text-sky-500"></i> IZIN
+                    </button>
+                    <button onclick="submitMyAttendance('Alpha')" class="btn-kawaii py-3 px-4 bg-rose-100 hover:bg-rose-200 text-rose-700 border-2 border-rose-300 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-circle-xmark text-rose-500"></i> ALPHA
+                    </button>
+                </div>
+            </div>
+
+            <!-- REKAP STATISTIK -->
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-3.5">
+                <div class="bg-white/80 p-4 rounded-2xl border-2 border-gray-100 shadow-sm flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Total Siswa Absen</span>
+                    <div class="flex items-baseline justify-between mt-2">
+                        <span id="statTotal" class="text-2xl font-extrabold text-gray-800">0</span>
+                        <i class="fa-solid fa-users text-gray-300 text-lg"></i>
+                    </div>
+                </div>
+                <div class="bg-emerald-50/80 p-4 rounded-2xl border-2 border-emerald-100 shadow-sm flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-emerald-600 uppercase tracking-wider">Hadir</span>
+                    <div class="flex items-baseline justify-between mt-2">
+                        <span id="statHadir" class="text-2xl font-extrabold text-emerald-700">0</span>
+                        <i class="fa-solid fa-user-check text-emerald-400 text-lg"></i>
+                    </div>
+                </div>
+                <div class="bg-amber-50/80 p-4 rounded-2xl border-2 border-amber-100 shadow-sm flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-amber-600 uppercase tracking-wider">Sakit</span>
+                    <div class="flex items-baseline justify-between mt-2">
+                        <span id="statSakit" class="text-2xl font-extrabold text-amber-700">0</span>
+                        <i class="fa-solid fa-bed text-amber-400 text-lg"></i>
+                    </div>
+                </div>
+                <div class="bg-sky-50/80 p-4 rounded-2xl border-2 border-sky-100 shadow-sm flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-sky-600 uppercase tracking-wider">Izin</span>
+                    <div class="flex items-baseline justify-between mt-2">
+                        <span id="statIzin" class="text-2xl font-extrabold text-sky-700">0</span>
+                        <i class="fa-solid fa-file-signature text-sky-400 text-lg"></i>
+                    </div>
+                </div>
+                <div class="bg-rose-50/80 p-4 rounded-2xl border-2 border-rose-100 shadow-sm flex flex-col justify-between col-span-2 lg:col-span-1">
+                    <span class="text-[10px] font-bold text-rose-600 uppercase tracking-wider">Alpha</span>
+                    <div class="flex items-baseline justify-between mt-2">
+                        <span id="statAlpha" class="text-2xl font-extrabold text-rose-700">0</span>
+                        <i class="fa-solid fa-user-xmark text-rose-400 text-lg"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REKAP ABSEN PUBLIK TABLE -->
+            <div class="kawaii-card rounded-3xl p-5 overflow-hidden">
+                <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mb-5">
+                    
+                    <div>
+                        <h3 class="text-base font-extrabold text-gray-800">Daftar Absensi Siswa (Publik)</h3>
+                        <p class="text-[11px] text-gray-400">Menampilkan semua siswa yang sudah login & absen hari ini.</p>
+                    </div>
+
+                    <!-- Filter Buttons -->
+                    <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
+                        <button onclick="setFilter('Semua')" id="filterSemua" class="px-3 py-1.5 bg-pink-400 text-white font-bold rounded-xl text-xs whitespace-nowrap shadow-sm">Semua</button>
+                        <button onclick="setFilter('Hadir')" id="filterHadir" class="px-3 py-1.5 bg-gray-100 text-gray-600 hover:bg-emerald-100 hover:text-emerald-700 font-bold rounded-xl text-xs whitespace-nowrap transition-colors">Hadir</button>
+                        <button onclick="setFilter('Sakit')" id="filterSakit" class="px-3 py-1.5 bg-gray-100 text-gray-600 hover:bg-amber-100 hover:text-amber-700 font-bold rounded-xl text-xs whitespace-nowrap transition-colors">Sakit</button>
+                        <button onclick="setFilter('Izin')" id="filterIzin" class="px-3 py-1.5 bg-gray-100 text-gray-600 hover:bg-sky-100 hover:text-sky-700 font-bold rounded-xl text-xs whitespace-nowrap transition-colors">Izin</button>
+                        <button onclick="setFilter('Alpha')" id="filterAlpha" class="px-3 py-1.5 bg-gray-100 text-gray-600 hover:bg-rose-100 hover:text-rose-700 font-bold rounded-xl text-xs whitespace-nowrap transition-colors">Alpha</button>
+                    </div>
+                </div>
+
+                <!-- Table Container -->
+                <div class="overflow-x-auto rounded-2xl border-2 border-pink-100">
+                    <table class="w-full text-left text-xs text-gray-600">
+                        <thead class="bg-pink-50/70 text-gray-700 font-bold uppercase tracking-wider border-b-2 border-pink-100">
+                            <tr>
+                                <th class="p-3.5">#</th>
+                                <th class="p-3.5">Nama Siswa</th>
+                                <th class="p-3.5">Status Absen</th>
+                                <th class="p-3.5">Waktu (WIB)</th>
+                                <th class="p-3.5">Catatan / Alasan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceTableBody" class="divide-y divide-pink-50 bg-white">
+                            <!-- Dynamically Rendered -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full bg-white/60 backdrop-blur-sm border-t border-pink-100 py-3 text-center text-[11px] text-gray-400 z-20">
+        Absensi Siswa Kawaii &copy; 2026 • Real-Time WIB (Asia/Jakarta) 🐼🌸
+    </footer>
+
+    <!-- ================= PANDA MINI KIRI BAWAH ================= -->
+    <div id="pandaLeft" class="panda-corner panda-left peeking-left">
+        <div class="mini-panda-wrapper">
+            <div id="speechLeft" class="mini-speech-bubble">Halo teman! 🐼</div>
+            <div class="mini-panda-head" id="headLeft">
+                <div class="mini-ear left"></div>
+                <div class="mini-ear right"></div>
+                <div class="mini-eye-patch left"><div id="pupilLL" class="mini-pupil"></div></div>
+                <div class="mini-eye-patch right"><div id="pupilLR" class="mini-pupil"></div></div>
+                <div class="mini-blush left"></div>
+                <div class="mini-blush right"></div>
+                <div class="mini-nose"></div>
+                <div class="mini-mouth"></div>
+            </div>
+            <div class="panda-paws"><div class="paw"></div><div class="paw"></div></div>
+        </div>
+    </div>
+
+    <!-- ================= PANDA MINI KANAN BAWAH ================= -->
+    <div id="pandaRight" class="panda-corner panda-right peeking-right">
+        <div class="mini-panda-wrapper">
+            <div id="speechRight" class="mini-speech-bubble">Absen yuk! ✨</div>
+            <div class="mini-panda-head" id="headRight">
+                <div class="mini-ear left"></div>
+                <div class="mini-ear right"></div>
+                <div class="mini-eye-patch left"><div id="pupilRL" class="mini-pupil"></div></div>
+                <div class="mini-eye-patch right"><div id="pupilRR" class="mini-pupil"></div></div>
+                <div class="mini-blush left"></div>
+                <div class="mini-blush right"></div>
+                <div class="mini-nose"></div>
+                <div class="mini-mouth"></div>
+            </div>
+            <div class="panda-paws"><div class="paw"></div><div class="paw"></div></div>
+        </div>
+    </div>
+
+    <!-- MODAL SAKIT / IZIN NOTE -->
+    <div id="noteModal" class="fixed inset-0 bg-gray-900/40 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl p-6 max-w-xs w-full shadow-2xl border-4 border-pink-100 text-center">
+            <div id="noteModalIcon" class="w-12 h-12 bg-amber-100 text-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-3 text-xl">
+                <i class="fa-solid fa-notes-medical"></i>
+            </div>
+            <h3 id="noteModalTitle" class="text-base font-bold text-gray-700 mb-1">Berikan Alasan</h3>
+            <p class="text-[11px] text-gray-400 mb-3">Tuliskan keterangan singkat:</p>
+            <textarea 
+                id="noteInput" 
+                rows="3" 
+                placeholder="Contoh: Demam tinggi / Ada urusan keluarga..." 
+                class="w-full p-3 bg-pink-50/50 border-2 border-pink-100 rounded-xl text-xs text-gray-700 focus:outline-none focus:border-pink-300 mb-4"
+            ></textarea>
+            <div class="flex gap-2">
+                <button onclick="closeNoteModal()" class="flex-1 py-2 border-2 border-gray-200 text-gray-500 font-semibold rounded-xl text-xs hover:bg-gray-50">Batal</button>
+                <button onclick="submitNoteModal()" class="flex-1 py-2 bg-pink-400 text-white font-bold rounded-xl text-xs hover:bg-pink-500">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-2.5 translate-y-24 opacity-0 transition-all duration-300 z-50 text-xs font-bold">
+        <i class="fa-solid fa-circle-check text-lg"></i>
+        <span id="toastMsg">Berhasil!</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // App States
+        let students = []; // ONLY stores users who logged in and attended
+        let currentUser = null;
+        let currentFilter = 'Semua';
+        let pendingStatusType = '';
+        let lastResetDate = '';
+
+        // Elements
+        const pandaLeft = document.getElementById('pandaLeft');
+        const pandaRight = document.getElementById('pandaRight');
+        const speechLeft = document.getElementById('speechLeft');
+        const speechRight = document.getElementById('speechRight');
+        const pupilLL = document.getElementById('pupilLL');
+        const pupilLR = document.getElementById('pupilLR');
+        const pupilRL = document.getElementById('pupilRL');
+        const pupilRR = document.getElementById('pupilRR');
+
+        window.onload = function() {
+            initParticles();
+            loadLocalStorageData();
+            
+            // Start Clock Interval
+            setInterval(updateWIBClock, 1000);
+            updateWIBClock();
+        };
+
+        // 1. Get Genuine WIB (Asia/Jakarta) Date Object
+        function getWIBDate() {
+            const now = new Date();
+            // Convert current local time to WIB string format
+            const wibString = now.toLocaleString("en-US", { timeZone: "Asia/Jakarta" });
+            return new Date(wibString);
+        }
+
+        // 2. Real-time Clock Update
+        function updateWIBClock() {
+            const wib = getWIBDate();
+            
+            const hours = String(wib.getHours()).padStart(2, '0');
+            const minutes = String(wib.getMinutes()).padStart(2, '0');
+            const seconds = String(wib.getSeconds()).padStart(2, '0');
+            const timeStr = `${hours}:${minutes}:${seconds} WIB`;
+
+            const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            const dateStr = wib.toLocaleDateString('id-ID', options);
+
+            document.getElementById('navClock').innerText = timeStr;
+            document.getElementById('navDate').innerText = dateStr;
+            document.getElementById('dashClock').innerText = timeStr;
+            document.getElementById('dashDate').innerText = dateStr;
+
+            // Check for 00:00:00 WIB Midnight Reset
+            const currentDateStr = wib.toDateString();
+            if (lastResetDate && lastResetDate !== currentDateStr) {
+                resetAttendanceForNewDay();
+                lastResetDate = currentDateStr;
+                localStorage.setItem('kawaii_last_reset_date', currentDateStr);
+                showToast("📅 Jam 00:00 WIB! Absensi otomatis di-reset untuk hari baru.");
+            } else if (!lastResetDate) {
+                lastResetDate = currentDateStr;
+                localStorage.setItem('kawaii_last_reset_date', currentDateStr);
+            }
+        }
+
+        // 3. LocalStorage Handlers
+        function loadLocalStorageData() {
+            const savedStudents = localStorage.getItem('kawaii_students');
+            if (savedStudents) {
+                try {
+                    students = JSON.parse(savedStudents);
+                } catch(e) {
+                    students = [];
+                }
+            } else {
+                students = [];
+            }
+
+            const savedUser = localStorage.getItem('kawaii_user');
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    showDashboard();
+                } catch(e) {
+                    showLogin();
+                }
+            } else {
+                showLogin();
+            }
+
+            lastResetDate = localStorage.getItem('kawaii_last_reset_date') || '';
+        }
+
+        function saveStudents() {
+            localStorage.setItem('kawaii_students', JSON.stringify(students));
+        }
+
+        function resetAttendanceForNewDay() {
+            students = []; // Reset list for new day
+            saveStudents();
+            renderDashboard();
+        }
+
+        // 4. Login & Navigation
+        function handleLogin(e) {
+            e.preventDefault();
+            const name = document.getElementById('loginName').value.trim();
+            if (!name) return;
+
+            currentUser = { name: name };
+            localStorage.setItem('kawaii_user', JSON.stringify(currentUser));
+
+            showDashboard();
+            showToast(`Selamat datang, ${name}! ✨`);
+        }
+
+        function logout() {
+            localStorage.removeItem('kawaii_user');
+            currentUser = null;
+            showLogin();
+            showToast("Berhasil keluar.");
+        }
+
+        function showLogin() {
+            document.getElementById('loginView').classList.remove('hidden');
+            document.getElementById('dashboardView').classList.add('hidden');
+            document.getElementById('navUserBadge').classList.add('hidden');
+            pandasShow();
+            updatePandasSpeech("Selamat datang! 🌸", "Silakan login!");
+        }
+
+        function showDashboard() {
+            document.getElementById('loginView').classList.add('hidden');
+            document.getElementById('dashboardView').classList.remove('hidden');
+            document.getElementById('navUserBadge').classList.remove('hidden');
+
+            document.getElementById('userDisplayName').innerText = currentUser.name;
+
+            pandasShow();
+            updatePandasSpeech("Silakan absen! 📋", "Semoga sehat selalu! ✨");
+            renderDashboard();
+        }
+
+        // 5. Submit Absen (Only for Current Logged-in User)
+        function getCurrentWIBTimeString() {
+            const wib = getWIBDate();
+            const hours = String(wib.getHours()).padStart(2, '0');
+            const minutes = String(wib.getMinutes()).padStart(2, '0');
+            const seconds = String(wib.getSeconds()).padStart(2, '0');
+            return `${hours}:${minutes}:${seconds}`;
+        }
+
+        function submitMyAttendance(status, note = '') {
+            if (!currentUser) return;
+
+            const timeWIB = getCurrentWIBTimeString();
+
+            // Check if current user already has an entry
+            let existingIndex = students.findIndex(s => s.name.toLowerCase() === currentUser.name.toLowerCase());
+
+            if (existingIndex !== -1) {
+                // Update
+                students[existingIndex].status = status;
+                students[existingIndex].time = timeWIB;
+                students[existingIndex].note = note;
+            } else {
+                // First time attending today
+                const newRecord = {
+                    id: Date.now(),
+                    name: currentUser.name,
+                    status: status,
+                    time: timeWIB,
+                    note: note,
+                    timestamp: Date.now() // for order tracking
+                };
+                students.push(newRecord);
+            }
+
+            saveStudents();
+            renderDashboard();
+            showToast(`Absen kamu (${status}) berhasil dicatat! 🎉`);
+        }
+
+        // 6. Render Dashboard & Sultan Absen
+        function renderDashboard() {
+            renderStats();
+            renderSultan();
+            renderTable();
+            updateMyStatusBadge();
+        }
+
+        function updateMyStatusBadge() {
+            if (!currentUser) return;
+            const me = students.find(s => s.name.toLowerCase() === currentUser.name.toLowerCase());
+            const badge = document.getElementById('myCurrentStatus');
+            if (me) {
+                badge.innerText = `Status Kamu: ${me.status} (${me.time} WIB)`;
+                badge.className = "text-xs font-extrabold text-emerald-700 bg-emerald-100 border border-emerald-200 px-3 py-1 rounded-xl";
+            } else {
+                badge.innerText = "Status Kamu: Belum Absen Hari Ini";
+                badge.className = "text-xs font-bold text-gray-500 bg-gray-100 border border-gray-200 px-3 py-1 rounded-xl";
+            }
+        }
+
+        function renderStats() {
+            const total = students.length;
+            const hadir = students.filter(s => s.status === 'Hadir').length;
+            const sakit = students.filter(s => s.status === 'Sakit').length;
+            const izin = students.filter(s => s.status === 'Izin').length;
+            const alpha = students.filter(s => s.status === 'Alpha').length;
+
+            document.getElementById('statTotal').innerText = total;
+            document.getElementById('statHadir').innerText = hadir;
+            document.getElementById('statSakit').innerText = sakit;
+            document.getElementById('statIzin').innerText = izin;
+            document.getElementById('statAlpha').innerText = alpha;
+        }
+
+        function renderSultan() {
+            // "OH INI SULTAN ABSEN 👑✨" is the FIRST student who submitted attendance today
+            if (students.length > 0) {
+                // Sort by earliest timestamp/time
+                const sorted = [...students].sort((a, b) => a.timestamp - b.timestamp);
+                const sultan = sorted[0];
+
+                document.getElementById('sultanName').innerText = `${sultan.name} 👑`;
+                document.getElementById('sultanTimeBadge').innerHTML = `
+                    <div class="text-amber-900 font-extrabold">Waktu Absen: ${sultan.time} WIB</div>
+                    <div class="text-[10px] text-amber-700 font-bold mt-0.5">Siswa Tercepat Hari Ini! 🔥</div>
+                `;
+            } else {
+                document.getElementById('sultanName').innerText = "Belum Ada Sultan Absen Hari Ini!";
+                document.getElementById('sultanTimeBadge').innerText = "Ayo jadi orang PERTAMA yang absen hari ini! 🚀";
+            }
+        }
+
+        function setFilter(filter) {
+            currentFilter = filter;
+            ['Semua', 'Hadir', 'Sakit', 'Izin', 'Alpha'].forEach(f => {
+                const btn = document.getElementById(`filter${f}`);
+                if (f === filter) {
+                    btn.className = "px-3 py-1.5 bg-pink-400 text-white font-bold rounded-xl text-xs whitespace-nowrap shadow-sm";
+                } else {
+                    btn.className = "px-3 py-1.5 bg-gray-100 text-gray-600 hover:bg-pink-100 hover:text-pink-600 font-bold rounded-xl text-xs whitespace-nowrap transition-colors";
+                }
+            });
+            renderTable();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('attendanceTableBody');
+            tbody.innerHTML = '';
+
+            let filtered = students.filter(s => {
+                return currentFilter === 'Semua' || s.status === currentFilter;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="p-8 text-center text-gray-400 italic font-medium">
+                            Belum ada data absensi hari ini... 🐼
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            // Check who is sultan
+            const sultanId = [...students].sort((a, b) => a.timestamp - b.timestamp)[0]?.id;
+
+            filtered.forEach((s, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-pink-50/40 transition-colors";
+
+                let badgeClass = "bg-gray-100 text-gray-500 border-gray-200";
+                let iconClass = "fa-circle-question";
+
+                if (s.status === 'Hadir') {
+                    badgeClass = "bg-emerald-100 text-emerald-700 border-emerald-300";
+                    iconClass = "fa-circle-check";
+                } else if (s.status === 'Sakit') {
+                    badgeClass = "bg-amber-100 text-amber-700 border-amber-300";
+                    iconClass = "fa-bed";
+                } else if (s.status === 'Izin') {
+                    badgeClass = "bg-sky-100 text-sky-700 border-sky-300";
+                    iconClass = "fa-envelope-open-text";
+                } else if (s.status === 'Alpha') {
+                    badgeClass = "bg-rose-100 text-rose-700 border-rose-300";
+                    iconClass = "fa-circle-xmark";
+                }
+
+                const isMe = currentUser && currentUser.name.toLowerCase() === s.name.toLowerCase();
+                const isSultan = s.id === sultanId;
+
+                tr.innerHTML = `
+                    <td class="p-3.5 font-bold text-gray-400">${idx + 1}</td>
+                    <td class="p-3.5 font-extrabold text-gray-800 flex items-center gap-1.5 flex-wrap">
+                        ${s.name}
+                        ${isMe ? '<span class="text-[9px] bg-pink-100 text-pink-600 font-bold px-1.5 py-0.5 rounded-md border border-pink-200">Kamu</span>' : ''}
+                        ${isSultan ? '<span class="text-[9px] bg-amber-200 text-amber-900 font-black px-2 py-0.5 rounded-md border border-amber-300 shadow-sm">OH INI SULTAN ABSEN 👑✨</span>' : ''}
+                    </td>
+                    <td class="p-3.5">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-[11px] font-bold border ${badgeClass}">
+                            <i class="fa-solid ${iconClass}"></i> ${s.status}
+                        </span>
+                    </td>
+                    <td class="p-3.5 font-bold text-gray-700">${s.time} WIB</td>
+                    <td class="p-3.5 italic text-gray-500">${s.note || '-'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // 7. Modals Note
+        function openNoteModal(statusType) {
+            pendingStatusType = statusType;
+            document.getElementById('noteModalTitle').innerText = `Alasan ${statusType}`;
+            document.getElementById('noteInput').value = '';
+            document.getElementById('noteModal').classList.remove('hidden');
+        }
+
+        function closeNoteModal() {
+            document.getElementById('noteModal').classList.add('hidden');
+        }
+
+        function submitNoteModal() {
+            const note = document.getElementById('noteInput').value.trim();
+            closeNoteModal();
+            submitMyAttendance(pendingStatusType, note);
+        }
+
+        // 8. Panda Animations & Particles
+        function initParticles() {
+            const container = document.getElementById('particleContainer');
+            const icons = ['fa-leaf', 'fa-star', 'fa-heart', 'fa-sparkles', 'fa-paw'];
+            const colors = ['#FFB6C1', '#A8E6CF', '#FFD3B6', '#70D6FF', '#E2D4F9'];
+
+            for (let i = 0; i < 18; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle flex items-center justify-center';
+                const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+                p.innerHTML = `<i class="fa-solid ${randomIcon}"></i>`;
+                p.style.left = `${Math.random() * 100}vw`;
+                p.style.color = colors[Math.floor(Math.random() * colors.length)];
+                p.style.fontSize = `${Math.random() * 10 + 10}px`;
+                p.style.animationDuration = `${Math.random() * 8 + 8}s`;
+                p.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(p);
+            }
+        }
+
+        let areHiding = false;
+        document.addEventListener('mousemove', (e) => {
+            if (areHiding) return;
+            updatePupilPosition(e, 'headLeft', [pupilLL, pupilLR]);
+            updatePupilPosition(e, 'headRight', [pupilRL, pupilRR]);
+        });
+
+        function updatePupilPosition(e, headId, pupils) {
+            const head = document.getElementById(headId);
+            if (!head) return;
+            const rect = head.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX);
+            const distance = Math.min(4, Math.hypot(e.clientX - centerX, e.clientY - centerY) / 35);
+
+            const pupilX = Math.cos(angle) * distance;
+            const pupilY = Math.sin(angle) * distance;
+
+            pupils.forEach(pupil => {
+                pupil.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+            });
+        }
+
+        function pandasHide() {
+            pandaLeft.classList.add('hiding');
+            pandaRight.classList.add('hiding');
+            areHiding = true;
+            speechLeft.innerText = "Ssst! Rahasia! 🙈";
+            speechRight.innerText = "Gak intip kok! 🙈";
+        }
+
+        function pandasShow() {
+            pandaLeft.classList.remove('hiding');
+            pandaRight.classList.remove('hiding');
+            areHiding = false;
+            speechLeft.innerText = "Mengintip lagi! 🐼";
+            speechRight.innerText = "Absen yuk! ✨";
+            [pupilLL, pupilLR, pupilRL, pupilRR].forEach(p => p.style.transform = 'translate(0px, 0px)');
+        }
+
+        function updatePandasSpeech(msgLeft, msgRight) {
+            speechLeft.innerText = msgLeft;
+            speechRight.innerText = msgRight;
+        }
+
+        function togglePassword() {
+            const pwd = document.getElementById('loginPassword');
+            const icon = document.getElementById('eyeIcon');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                icon.className = 'fa-solid fa-eye-slash text-xs';
+                pandasShow();
+            } else {
+                pwd.type = 'password';
+                icon.className = 'fa-solid fa-eye text-xs';
+                if (document.activeElement === pwd) pandasHide();
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.innerText = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
